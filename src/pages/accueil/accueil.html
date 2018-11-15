@@ -13,9 +13,9 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
   <ion-toolbar>La météo dans ma ville</ion-toolbar>
-  <ion-item>{{city?.name}}</ion-item>
+  <ion-toolbar>{{city?.name}}</ion-toolbar>
   <ion-item>{{dayInfo[0]?.date}}</ion-item>
   <ion-item>Soleil levé : {{city?.sunrise}} / Couché : {{city?.sunset}}</ion-item>
 
@@ -33,6 +33,9 @@
   </form>
 <ion-item>
   {{day?.condition}}
+</ion-item>
+<ion-item>
+    <img [src]="day?.icon_big"/>
 </ion-item>
 <ion-item>
   {{day?.tmin}} / {{day?.tmax}}
