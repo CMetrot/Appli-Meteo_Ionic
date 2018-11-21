@@ -6,38 +6,36 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>Acceuil</ion-title>
+  <ion-navbar color="primary">
+    <ion-title>La météo dans ma ville</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content>
-  <ion-toolbar>La météo dans ma ville</ion-toolbar>
-  <ion-toolbar>{{city?.name}}</ion-toolbar>
-  <ion-item>{{dayInfo[0]?.date}}</ion-item>
-  <ion-item>Soleil levé : {{city?.sunrise}} / Couché : {{city?.sunset}}</ion-item>
+  <ion-toolbar color="secondary" text-center>
+    <h5>{{city?.name}}</h5>
+    <h5>{{dayInfo[index]?.date}}</h5>
+  </ion-toolbar>
+  <ion-item text-center>Soleil levé : {{city?.sunrise}} / Couché : {{city?.sunset}}</ion-item>
 
-  <form (ngSubmit)="onSearch()">
-    <ion-item>
+  <form [formGroup]="formulaire" (ngSubmit)="onSearch('Vendredi')">
+    <ion-item text-center>
       <ion-label>Voir la météo pour :</ion-label>
-      <ion-select>
+      <ion-select formControlName="jour">
         <ion-option *ngFor="let dayfield of dayInfo" [value]="dayfield.day_long">{{dayfield.day_long}}</ion-option>
       </ion-select>
-      <!--ion-select [(NgModel)]="index" (ionChange)="onSearch">
-        <ion-option *ngFor="let dayfield of dayInfo" [value]="dayfield.day_long">{{dayfield.day_long}}</ion-option>
-      </ion-select-->
     </ion-item>
     <button ion-button type="submit" block>Voir</button>
   </form>
-<ion-item>
-  {{day?.condition}}
+<ion-item text-center>
+  <b>{{day?.condition}}</b>
 </ion-item>
-<ion-item>
+<ion-item text-center>
     <img [src]="day?.icon_big"/>
 </ion-item>
-<ion-item>
-  {{day?.tmin}} / {{day?.tmax}}
+<ion-item text-center>
+  <b ion-text color="primary">{{day?.tmin}}</b> / <b ion-text color="danger">{{day?.tmax}}</b>
 </ion-item>
 </ion-content>
